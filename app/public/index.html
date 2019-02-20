@@ -22,9 +22,17 @@
 
 <script>
     (function() {
-		var clientWidth = document.documentElement.clientWidth;
+        var clientWidth = document.documentElement.clientWidth;
+        var dpr = window.devicePixelRatio;
+        var scale = 1/dpr;
+        var meta = document.querySelector('meta[name="viewport"]');
+
+        meta.setAttribute('content',
+            'width=device-width,initial-scale=' + scale + ',maximum-scale=' + scale + ',user-scalable=no'
+        );  //设置缩放
+
 		//设计稿是375px的，1rem = 100px进行换算
-        document.documentElement.style.fontSize = clientWidth/3.75 + 'px';
+        document.documentElement.style.fontSize = clientWidth / 3.75 * dpr + 'px';
         
 	})();
 </script>
